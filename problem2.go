@@ -16,12 +16,9 @@ import "fmt"
 
 func main(){
 	conditionOptions := condition(ConditionOptions{MaxResult:4000000})
-	fmt.Println(fib(conditionOptions))
-}
-
-type ConditionOptions struct {
-	MaxResult int
-	MaxTerm int
+	fibSequence := fib(conditionOptions)
+	sumOfEvenItems := sumOfArrayItems(fibSequence)
+	fmt.Println(sumOfEvenItems)
 }
 
 func fib(condition func(int, int) bool) []int {
@@ -32,6 +29,21 @@ func fib(condition func(int, int) bool) []int {
 		result = append(result, currentItem)
 	}
 	return result
+}
+
+func sumOfArrayItems(items []int) int {
+	sum := 0
+	for _, value := range items {
+		if value % 2 == 0 {
+			sum += value
+		}
+	}
+	return sum
+}
+
+type ConditionOptions struct {
+	MaxResult int
+	MaxTerm int
 }
 
 func condition(options ConditionOptions) func(int, int) bool {
