@@ -15,5 +15,13 @@ package main
 import "fmt"
 
 func main(){
-	
+	fmt.Println(fib(10))
+}
+
+func fib(terms int) []int {
+	result := []int{1, 2}
+	for i := 2; i < terms; i++ {
+		result = append(result, result[i - 1] + result[i - 2])
+	}
+	return result
 }
